@@ -1,0 +1,3 @@
+/media/mohamed/C03CCDB43CCDA62E/tutorials/Innopolis/examples/src/CMakeFiles/rebuild_cache.dir
+/media/mohamed/C03CCDB43CCDA62E/tutorials/Innopolis/examples/src/CMakeFiles/box2d.dir
+/media/mohamed/C03CCDB43CCDA62E/tutorials/Innopolis/examples/src/CMakeFiles/edit_cache.dir
