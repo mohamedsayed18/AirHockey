@@ -1,6 +1,7 @@
 #include <iostream>
 #include <box2d/box2d.h>
 
+/*
 int main() {
     // creating a world
     b2Vec2 gravity(0.0f, -10.0f);
@@ -51,3 +52,4 @@ int main() {
 
     return 0;
 }
+*/
