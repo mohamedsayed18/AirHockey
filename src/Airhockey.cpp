@@ -1,6 +1,6 @@
 /*
 TODO: 
-Build a playground: a static box
+Build a playground: four walls (four boxs)
 Make a player 
 Move the player around
 collision between player and ball
@@ -15,24 +15,41 @@ int main() {
     b2Vec2 gravity(0.0f, 0.0f);     //no gravity in x or y
     b2World world(gravity);
 
-    //creating ground body
-    b2BodyDef groundBodyDef;    //body definition
-    groundBodyDef.position.Set(0.0f, 0.0f); //playground 
+    //Creating walls
+    b2BodyDef body1;    
+    b2BodyDef body2;    
+    b2BodyDef body3;    
+    b2BodyDef body4;    
+    body1.position.Set(0.0f, 0.0f); //playground
+    body2.position.Set(1.50f, 0.75f); //playground 
+    body3.position.Set(0.0f, 1.5f); //playground 
+    body4.position.Set(-1.5f, 0.75f); //playground  
 
-    b2Body* groundBody = world.CreateBody(&groundBodyDef);  //create the body
+    b2Body* wall1 = world.CreateBody(&body1);  //create the body
+    b2Body* wall2 = world.CreateBody(&body2);  //create the body
+    b2Body* wall3 = world.CreateBody(&body3);  //create the body
+    b2Body* wall4 = world.CreateBody(&body4);  //create the body
 
-    b2PolygonShape groundBox;   //create the shape
-    groundBox.SetAsBox(50.0f, 10.0f);   //100 meter wide, 20 meter tall
-    groundBody->CreateFixture(&groundBox, 0.0f);
+    b2PolygonShape groundBox1;   //create the shape
+    groundBox1.SetAsBox(3.6f, 0.3f);   //
+
+    b2PolygonShape groundBox2;   //create the shape
+    groundBox2.SetAsBox(0.3f, 1.5f);   //
+
+    wall1->CreateFixture(&groundBox1, 0.0f);
+    wall2->CreateFixture(&groundBox2, 0.0f);
+    wall3->CreateFixture(&groundBox1, 0.0f);
+    wall4->CreateFixture(&groundBox2, 0.0f);
+/*
 
     //create dynamic body (player)
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
-    bodyDef.position.Set(0.0f, 8.0f);
+    bodyDef.position.Set(0.0f, 0.0f);
     b2Body* body = world.CreateBody(&bodyDef);
     //shape
     b2CircleShape player;
-    player.m_p.Set(2.0f, 3.0f);
+    player.m_p.Set(0.0f, 0.0f);
     player.m_radius = 0.5f;
 
     //fixture
@@ -42,7 +59,7 @@ int main() {
     fixtureDef.friction = 0.3f;
 
     body->CreateFixture(&fixtureDef);
-    body->SetLinearVelocity(b2Vec2(0,2));
+    //body->SetLinearVelocity(b2Vec2(0,8));
 
     //simulation
     //Let's start simulation
@@ -57,7 +74,7 @@ int main() {
         float angle = body->GetAngle();
         printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
     }
-
+*/
     //clean the world
     //world->DestroyBody(body);
     return 0;
