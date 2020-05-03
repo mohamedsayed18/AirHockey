@@ -4,6 +4,8 @@ Build a playground: four walls (four boxs)
 Make a player 
 Move the player around
 collision between player and ball
+change the walls with vectors as in applyforce example, also may try edges b2edgeshape
+Make my own test
 */
 
 #include <iostream>
@@ -40,26 +42,29 @@ int main() {
     wall2->CreateFixture(&groundBox2, 0.0f);
     wall3->CreateFixture(&groundBox1, 0.0f);
     wall4->CreateFixture(&groundBox2, 0.0f);
-/*
 
-    //create dynamic body (player)
+    //Create dynamic body (player)
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
-    bodyDef.position.Set(0.0f, 0.0f);
+    bodyDef.position.Set(0.0f, 0.75f);
+    bodyDef.allowSleep = false;
     b2Body* body = world.CreateBody(&bodyDef);
     //shape
     b2CircleShape player;
     player.m_p.Set(0.0f, 0.0f);
-    player.m_radius = 0.5f;
+    player.m_radius = 0.1f;
 
     //fixture
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &player;
     fixtureDef.density = 1.0f;
-    fixtureDef.friction = 0.3f;
+    fixtureDef.friction = 0.1f;
+    fixtureDef.restitution = 1;
 
     body->CreateFixture(&fixtureDef);
-    //body->SetLinearVelocity(b2Vec2(0,8));
+    b2Vec2 p = body->GetWorldPoint(b2Vec2(0.0f, 0.0f));
+    b2Vec2 f (0.0f, 2.0f);
+    body->ApplyForce(f, p, true);
 
     //simulation
     //Let's start simulation
@@ -74,7 +79,7 @@ int main() {
         float angle = body->GetAngle();
         printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
     }
-*/
+
     //clean the world
     //world->DestroyBody(body);
     return 0;
