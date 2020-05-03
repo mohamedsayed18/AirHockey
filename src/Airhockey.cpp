@@ -6,6 +6,7 @@ Move the player around
 collision between player and ball
 change the walls with vectors as in applyforce example, also may try edges b2edgeshape
 Make my own test
+create all the bodies in loop 
 */
 
 #include <iostream>
@@ -47,7 +48,7 @@ int main() {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(0.0f, 0.75f);
-    bodyDef.allowSleep = false;
+    //bodyDef.allowSleep = false;
     b2Body* body = world.CreateBody(&bodyDef);
     //shape
     b2CircleShape player;
