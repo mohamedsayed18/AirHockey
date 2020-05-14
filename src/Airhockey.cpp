@@ -11,12 +11,40 @@ create all the bodies in loop
 
 #include <iostream>
 #include <box2d/box2d.h>
+#include <SFML/Window.hpp>
+
+//Creating a world (global)
+b2Vec2 gravity(0.0f, 0.0f);     //no gravity in x or y
+b2World world(gravity);
+
+void create_players(){
+    //Create dynamic body (ball)
+    b2BodyDef player1;
+    b2BodyDef player2;
+    b2BodyDef player3;
+    b2BodyDef player4;
+    b2BodyDef players[] = {player1, player2, player3, player4};
+    
+    for(int i=0; i<4; i++){
+        players[i].type = b2_dynamicBody;
+    }
+
+    player1.position.Set(1.5f, 0.5f);
+    player2.position.Set(1.5f, 1.0f);
+    player3.position.Set(-1.5f, 0.5f);
+    player4.position.Set(-1.5f, 1.0f);
+
+    b2Body* p1 = world.CreateBody(&player1);
+    b2Body* p2 = world.CreateBody(&player2);
+    b2Body* p3 = world.CreateBody(&player3);
+    b2Body* p4 = world.CreateBody(&player4);
+}
 
 int main() {
 
     //Creating a world
-    b2Vec2 gravity(0.0f, 0.0f);     //no gravity in x or y
-    b2World world(gravity);
+    //b2Vec2 gravity(0.0f, 0.0f);     //no gravity in x or y
+    //b2World world(gravity);
 
     //Creating walls
     b2BodyDef body1;    
@@ -44,7 +72,7 @@ int main() {
     wall3->CreateFixture(&groundBox1, 0.0f);
     wall4->CreateFixture(&groundBox2, 0.0f);
 
-    //Create dynamic body (player)
+    //Create dynamic body (ball)
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(0.0f, 0.75f);
